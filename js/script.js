@@ -105,8 +105,7 @@ function updateBookDisplay() {
 
         removeBtn.addEventListener("click", () => {
 
-            alert("Removing " + listBook.title);
-            removeBookFromLibrary(listBook);
+            removeBookFromLibrary(i);
         });
 
         removeBtn.classList.add("book-button");

@@ -140,6 +140,10 @@ body {
     gap: 4px;
 }
 
+.input-checkbox {
+    flex-direction: row;
+}
+
 label {
     color: white;
 }
