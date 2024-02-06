@@ -69,7 +69,7 @@ function generateDialog() {
 function closeBookDialog(event) {
 
     event.preventDefault();
-    
+
     let newBook = new Book(titleInput.value, 
                             authorInput.value, 
                             pageCountInput.value, 
@@ -108,6 +108,9 @@ function updateBookDisplay() {
         listBook.bookElement.classList.add("book-display");
         listBook.bookElement.style.backgroundColor = listBook.bookColor;
 
+        // Text elements
+        addBookDisplayText(listBook);
+
         // Buttons
         let readBtn = document.createElement("button");
 
@@ -137,6 +140,33 @@ function updateBookDisplay() {
         bookElements.push(listBook.bookElement);
         bookContainer.appendChild(listBook.bookElement);
     }
+}
+
+function addBookDisplayText(book) {
+
+    let title = document.createElement("div");
+    title.style.fontSize = "1.75em";
+    title.style.textAlign = "center";
+    title.style.fontWeight = "800";
+    title.style.wordBreak = "break-all";
+    title.textContent = book.title.substring(0, 36); // Max 36 Char
+
+    let author = document.createElement("div");
+    author.style.textAlign = "center";
+    author.textContent = "By " + book.author;
+
+    let pageCt = document.createElement("div");
+    pageCt.style.textAlign = "center";
+    pageCt.textContent = "Pages: " + book.pageCount;
+
+    let read = document.createElement("div");
+    read.style.textAlign = "center";
+    read.textContent = (book.read ? "Already Read" : "Not Yet Read");
+
+    book.bookElement.appendChild(title);
+    book.bookElement.appendChild(author);
+    book.bookElement.appendChild(pageCt);
+    book.bookElement.appendChild(read);
 }
 
 function toggleHasBeenRead(book) {
