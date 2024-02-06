@@ -3,9 +3,14 @@
 const myLibrary = [];
 const bookElements = [];
 const bookContainer = document.querySelector(".book-container");
-const bookDialog = document.querySelector("dialog");
 const addBookBtn = document.querySelector(".add-book");
+
+const bookDialog = document.querySelector("dialog");
 const dialogCloseBtn = document.querySelector(".dialog-close");
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pageCountInput = document.getElementById("page-ct");
+const readInput = document.getElementById("read");
 
 let libID = 0;
 
@@ -58,10 +63,24 @@ function generateDialog() {
         bookDialog.showModal();
     });
 
-    dialogCloseBtn.addEventListener("click", () => {
+    dialogCloseBtn.addEventListener("click", closeBookDialog, false);
+}
 
-        bookDialog.close();
-    });
+function closeBookDialog(event) {
+
+    event.preventDefault();
+    
+    let newBook = new Book(titleInput.value, 
+                            authorInput.value, 
+                            pageCountInput.value, 
+                            readInput.value);
+
+    addBookToLibrary(newBook);
+    updateBookDisplay();
+
+    // Reset dialog values
+    
+    bookDialog.close();
 }
 
 function addBookToLibrary(book) {
