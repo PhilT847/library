@@ -65,6 +65,15 @@ function closeBookDialog(event) {
 
     event.preventDefault();
 
+    // Validate input
+    if(titleInput.value.length < 1
+        || authorInput.value.length < 1
+        || pageCountInput.value.length < 1
+        || pageCountInput.value.length > 5) {
+
+        return;
+    }
+
     let newBook = new Book(titleInput.value, 
                             authorInput.value, 
                             pageCountInput.value, 
