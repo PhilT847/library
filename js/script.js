@@ -45,16 +45,8 @@ function Book(title, author, pageCt, read) {
     this.hasBeenRead = read;
     this.index = -1;
 
-    this.info = function() {
-
-        console.log("***" + this.title + "***");
-        console.log(this.author);
-        console.log(this.pageCount);
-        console.log(this.hasBeenRead);
-        console.log(this.index);
-    }
-
-    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    const randomColor = 
+            "#" + Math.floor(Math.random() * 16777215).toString(16);
 
     this.bookColor = randomColor;
 }
@@ -82,6 +74,10 @@ function closeBookDialog(event) {
     updateBookDisplay();
 
     // Reset dialog values
+    titleInput.value = "";
+    authorInput.value = "";
+    pageCountInput.value = "";
+    readInput.value = "";
     
     bookDialog.close();
 }
