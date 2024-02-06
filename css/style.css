@@ -102,9 +102,9 @@ body {
 }
 
 .book-display {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: 5em repeat(5, 3em);
+    align-items: center;
     border: 12px solid rgba(0,0,0,0.5);
     border-radius: 24px;
     height: 20em;

@@ -14,22 +14,25 @@ const readInput = document.getElementById("read");
 
 let libID = 0;
 
-DEBUG();
+displayInitialBooks();
 generateDialog();
 
-function DEBUG() {
+function displayInitialBooks() {
 
-    for(let i = 0; i < 8; i++) {
+    addBookToLibrary(new Book("Moby Dick", 
+                                "Herman Melville", 
+                                427, 
+                                false));
 
-        let title = "Book " + i.toString();
-        let author = "James Gub";
-        let count = 50 + Math.floor(Math.random() * 100);
-        let read = Math.floor(Math.random() * 2) == 1;
+    addBookToLibrary(new Book("Midnight in the Garden of Good and Evil", 
+                                "John Berendt", 
+                                416, 
+                                true));
 
-        let newBook = new Book(title, author, count, read);
-
-        addBookToLibrary(newBook);
-    }
+    addBookToLibrary(new Book("Beloved", 
+                                "Toni Morrison", 
+                                324, 
+                                true));
 
     updateBookDisplay();
 }
@@ -145,14 +148,15 @@ function updateBookDisplay() {
 function addBookDisplayText(book) {
 
     let title = document.createElement("div");
-    title.style.fontSize = "1.75em";
+    title.style.fontSize = "1.6em";
     title.style.textAlign = "center";
     title.style.fontWeight = "800";
-    title.style.wordBreak = "break-all";
-    title.textContent = book.title.substring(0, 36); // Max 36 Char
+    title.style.overflowWrap = "anywhere";
+    title.textContent = book.title; // Max 36 Char
 
     let author = document.createElement("div");
     author.style.textAlign = "center";
+    author.style.overflowWrap = "anywhere";
     author.textContent = "By " + book.author;
 
     let pageCt = document.createElement("div");
