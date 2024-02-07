@@ -124,7 +124,7 @@ function updateBookDisplay() {
 
         readBtn.addEventListener("click", () => {
 
-            toggleHasBeenRead(listBook);
+            toggleHasBeenRead(myLibrary[i]);
         });
 
         readBtn.classList.add("book-button");
@@ -170,7 +170,9 @@ function addBookDisplayText(book) {
 
     let read = document.createElement("div");
     read.style.textAlign = "center";
-    read.textContent = (book.read ? "Already Read" : "Not Yet Read");
+    read.textContent = (book.hasBeenRead ? "Already Read" : "Not Yet Read");
+    read.style.backgroundColor = (book.hasBeenRead ?
+                                    "rgba(0,255,0,0.1)" : "rgba(255,0,0,0.1)");
 
     book.bookElement.appendChild(title);
     book.bookElement.appendChild(author);
@@ -181,6 +183,7 @@ function addBookDisplayText(book) {
 function toggleHasBeenRead(book) {
 
     book.hasBeenRead = !book.hasBeenRead;
+    updateBookDisplay();
 }
 
 function removeBookFromLibrary(index) {
