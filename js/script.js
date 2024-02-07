@@ -6,6 +6,7 @@ const bookContainer = document.querySelector(".book-container");
 const addBookBtn = document.querySelector(".add-book");
 
 const bookDialog = document.querySelector("dialog");
+const dialogSubmitBtn = document.querySelector(".dialog-submit");
 const dialogCloseBtn = document.querySelector(".dialog-close");
 const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
@@ -58,19 +59,42 @@ function generateDialog() {
         bookDialog.showModal();
     });
 
-    dialogCloseBtn.addEventListener("click", closeBookDialog, false);
+    dialogSubmitBtn.addEventListener("click", submitBook, false);
+    dialogCloseBtn.addEventListener("click", cancelBookCreation, false);
 }
 
-function closeBookDialog(event) {
+function submitBook(event) {
 
+    // Prevent default dialog closure
     event.preventDefault();
 
-    // Validate input
-    if(titleInput.value.length < 1
-        || authorInput.value.length < 1
-        || pageCountInput.value.length < 1
-        || pageCountInput.value.length > 5) {
+    // Check for errors
+    let alertMessage = "Unable to complete book.\n";
+    let foundError = false;
 
+    if(titleInput.value.length < 1) {
+
+        alertMessage += "* Missing a title\n";
+        foundError = true;
+    }
+
+    if(authorInput.value.length < 1) {
+
+        alertMessage += "* Missing an author\n";
+        foundError = true;
+    }
+
+    if(pageCountInput.value.length < 1
+        || pageCountInput.value > 100000) {
+
+        alertMessage += "* Invalid page count; please enter a number between 1 and 100,000\n";
+        foundError = true;
+    }
+
+    // Error alert
+    if(foundError) {
+
+        alert(alertMessage);
         return;
     }
 
@@ -86,7 +110,21 @@ function closeBookDialog(event) {
     titleInput.value = "";
     authorInput.value = "";
     pageCountInput.value = "";
-    readInput.value = "";
+    readInput.value = false;
+    
+    bookDialog.close();
+}
+
+function cancelBookCreation(event) {
+
+    // Prevent default dialog closure
+    event.preventDefault();
+
+    // Reset dialog values
+    titleInput.value = "";
+    authorInput.value = "";
+    pageCountInput.value = "";
+    readInput.value = false;
     
     bookDialog.close();
 }
