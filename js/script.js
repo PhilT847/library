@@ -46,8 +46,10 @@ function Book(title, author, pageCt, read) {
     this.hasBeenRead = read;
     this.index = -1;
 
-    const randomColor = 
-            "#" + Math.floor(Math.random() * 16777215).toString(16);
+    let red = 200 + (Math.random() * 50);
+    let green = 200 + (Math.random() * 50);
+    let blue = 200 + (Math.random() * 50);
+    let randomColor = "rgb(" + red + "," + green + "," + blue + ")";
 
     this.bookColor = randomColor;
 }
