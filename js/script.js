@@ -15,6 +15,26 @@ const readInput = document.getElementById("read");
 
 let libID = 0;
 
+class Book {
+
+    constructor(title, author, pageCt, read) {
+
+        this.title = title;
+        this.author = author;
+        this.pageCount = pageCt;
+        this.hasBeenRead = read;
+        this.index = -1;
+    
+        // Generate random color on construction
+        let red = 200 + (Math.random() * 50);
+        let green = 200 + (Math.random() * 50);
+        let blue = 200 + (Math.random() * 50);
+        let randomColor = "rgb(" + red + "," + green + "," + blue + ")";
+    
+        this.bookColor = randomColor;
+    }
+}
+
 displayInitialBooks();
 generateDialog();
 
@@ -38,6 +58,7 @@ function displayInitialBooks() {
     updateBookDisplay();
 }
 
+/*
 function Book(title, author, pageCt, read) {
 
     this.title = title;
@@ -53,6 +74,7 @@ function Book(title, author, pageCt, read) {
 
     this.bookColor = randomColor;
 }
+*/
 
 function generateDialog() {
 
